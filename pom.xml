@@ -10,6 +10,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <springfox-version>2.7.0</springfox-version>
+        <io.corp.calculator.tracer_version>1.0.0</io.corp.calculator.tracer_version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,6 +34,11 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>io.corp.calculator</groupId>
+            <artifactId>tracer</artifactId>
+            <version>${io.corp.calculator.tracer_version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

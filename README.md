@@ -1,6 +1,10 @@
 ################
 INSTRUCCIONES
 ##############
+Para añadir el tracer a la carpeta m2 del usuario se lanza el siguiente comando desde la ubicación del jar:
+mvn install:install-file -Dfile=tracer-1.0.0.jar -DgroupId=io.corp.calculator -DartifactId=tracer -Dversion=1.0.0 -Dpackaging=jar
+
+
 
 ################
 ANÁLISIS
