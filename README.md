@@ -27,3 +27,5 @@ Al plantearse validaciones con anotaciones, se invocará al controlador mediante
 
 El último paso sería diseñar una interfaz de errores con códigos genéricos HTTP o internos de la aplicación
 para facilitar el seguimiento de posibles errores controlados y no controlados
+
+Se utilizará sonarLint para asegurar la calidad del código implementado
