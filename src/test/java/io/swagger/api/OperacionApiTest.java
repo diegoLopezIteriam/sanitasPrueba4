@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.google.gson.Gson;
@@ -35,7 +36,7 @@ public class OperacionApiTest {
 	public void testSumaCorrecta() throws Exception {
 		SumaDatos datos = new SumaDatos();
 		datos.setSumando1(2l);
-		datos.setSumando1(3l);
+		datos.setSumando2(3l);
 		String resultadoEsperado = "5";
 		ResultActions respuesta = llamarAURLOperacion(ENDPOINT_SUMA, datos);
 		respuesta
@@ -57,10 +58,12 @@ public class OperacionApiTest {
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
 				.andExpect(MockMvcResultMatchers.content()
 						.contentType(MediaType.APPLICATION_JSON_UTF8));
+		// Al imprimir la respuesta podemos verificar que los datos recibidos son los esperados y el test es correcto. Por ejemplo: Status = 400
+		respuesta.andDo(MockMvcResultHandlers.print());
 	}
 
 	/**
-	 * El objeto de este test es validar que, en caso de una entrada de letras o caracteres no esperados, se controla el error
+	 * El objeto de este test es validar que, en caso de una entrada de letras o caracteres no esperados, la respuesta de error es la esperada
 	 * @throws Exception
 	 */
 	@Test
