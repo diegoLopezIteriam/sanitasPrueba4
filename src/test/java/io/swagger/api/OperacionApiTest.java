@@ -56,9 +56,7 @@ public class OperacionApiTest {
 		SumaDatos datos = new SumaDatos();
 		ResultActions respuesta = llamarAURLOperacion(ENDPOINT_SUMA, datos);
 		respuesta
-				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content()
-						.contentType(MediaType.APPLICATION_JSON_UTF8));
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 		// Al imprimir la respuesta podemos verificar que los datos recibidos son los esperados y el test es correcto. Por ejemplo: Status = 400
 		print(respuesta);
 	}
@@ -72,9 +70,7 @@ public class OperacionApiTest {
 		String datos = "{ \"sumando1\": \"dos\", \"sumando2\": \"dos\" }";
 		ResultActions respuesta = llamarAURLOperacion(ENDPOINT_SUMA, datos);
 		respuesta
-				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content()
-						.contentType(MediaType.APPLICATION_JSON_UTF8));
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 
 	/**
