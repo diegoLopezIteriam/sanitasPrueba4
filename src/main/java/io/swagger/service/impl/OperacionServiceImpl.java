@@ -10,10 +10,10 @@ import io.swagger.service.OperacionService;
 public class OperacionServiceImpl implements OperacionService {
 
 	@Override public Long restar(RestaDatos restaDatos) {
-		return null;
+		return restaDatos.getSustraendo() - restaDatos.getMinuendo();
 	}
 
 	@Override public Long sumar(SumaDatos sumaDatos) {
-		return null;
+		return sumaDatos.getSumando1() + sumaDatos.getSumando2();
 	}
 }
