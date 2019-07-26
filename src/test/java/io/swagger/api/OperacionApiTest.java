@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.google.gson.Gson;
 
+import io.swagger.model.RestaDatos;
 import io.swagger.model.SumaDatos;
 
 @RunWith(SpringRunner.class)
@@ -59,7 +60,7 @@ public class OperacionApiTest {
 				.andExpect(MockMvcResultMatchers.content()
 						.contentType(MediaType.APPLICATION_JSON_UTF8));
 		// Al imprimir la respuesta podemos verificar que los datos recibidos son los esperados y el test es correcto. Por ejemplo: Status = 400
-		respuesta.andDo(MockMvcResultHandlers.print());
+		print(respuesta);
 	}
 
 	/**
@@ -76,14 +77,37 @@ public class OperacionApiTest {
 						.contentType(MediaType.APPLICATION_JSON_UTF8));
 	}
 
+	/**
+	 * Validar que el error en caso de string vacios es el esperado
+	 * @throws Exception
+	 */
 	@Test
-	public void testRestaCorrecta() {
-
+	public void testSumaParametrosEnBlanco() throws Exception {
+		String datos = "{ \"sumando1\": \"\", \"sumando2\": \"\" }";
+		ResultActions respuesta = llamarAURLOperacion(ENDPOINT_SUMA, datos);
+		respuesta
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		print(respuesta);
 	}
 
 	@Test
-	public void testRestaParametrosNull() {
+	public void testRestaCorrecta() throws Exception {
+		RestaDatos restaDatos = new RestaDatos();
+		restaDatos.setSustraendo(3l);
+		restaDatos.setMinuendo(1l);
+		String resultadoEsperado = "2";
+		ResultActions respuesta = llamarAURLOperacion(ENDPOINT_RESTA, restaDatos);
+		respuesta.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().json(resultadoEsperado));
+		print(respuesta);
+	}
 
+	@Test
+	public void testRestaParametrosNull() throws Exception {
+		RestaDatos restaDatos = new RestaDatos();
+		ResultActions respuesta = llamarAURLOperacion(ENDPOINT_RESTA, restaDatos);
+		respuesta.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		print(respuesta);
 	}
 
 	private ResultActions llamarAURLOperacion(String endpointOperacion, Object pojoEntrada) throws Exception {
@@ -91,6 +115,10 @@ public class OperacionApiTest {
 		return mockMvc.perform(MockMvcRequestBuilders.post("/operacion/".concat(endpointOperacion))
 				.content(gson.toJson(pojoEntrada))
 				.contentType(MediaType.APPLICATION_JSON_UTF8));
+	}
+
+	private void print(ResultActions respuesta) throws Exception {
+		respuesta.andDo(MockMvcResultHandlers.print());
 	}
 
 }

@@ -2,7 +2,11 @@ package io.swagger.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -18,10 +22,18 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class SumaDatos   {
 
+  /**
+   * Se definirá la longitud maxima de digitos admitidos. Con decimalMin = 0 impedimos valores negativos
+   * Se hace con propósito de jugar con alguna validación más. Podría haberse admitido la suma de números negativos
+   */
+  @Digits(integer = 15, fraction = 0)
+  @DecimalMin("0")
   @NotNull
   @JsonProperty("sumando1")
   private Long sumando1 = null;
 
+  @Digits(integer = 15, fraction = 0)
+  @DecimalMin("0")
   @NotNull
   @JsonProperty("sumando2")
   private Long sumando2 = null;
