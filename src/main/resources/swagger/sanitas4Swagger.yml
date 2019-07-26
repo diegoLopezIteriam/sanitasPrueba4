@@ -10,7 +10,7 @@ paths:
   /operacion/suma:
     post:
       tags:
-        - Lista de sumandos
+        - Operador enteros
       summary: Realiza la suma de dos sumandos
       operationId: sumarEnteros
       consumes:
@@ -19,7 +19,7 @@ paths:
         - application/json
       parameters:
         - in: body
-          name: listaSumandos
+          name: sumaDatos
           required: true
           schema:
             $ref: '#/definitions/SumaDatos'
@@ -35,8 +35,8 @@ paths:
   /operacion/resta:
     post:
       tags:
-        - Lista de sumandos
-      summary: Realiza la resta de posible ampliacion
+        - Operador enteros
+      summary: Realiza la resta de dos enteros
       operationId: restarEnteros
       consumes:
         - application/json
@@ -44,7 +44,7 @@ paths:
         - application/json
       parameters:
         - in: body
-          name: listaSumandos
+          name: restaDatos
           required: true
           schema:
             $ref: '#/definitions/RestaDatos'

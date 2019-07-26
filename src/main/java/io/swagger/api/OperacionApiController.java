@@ -28,40 +28,13 @@ public class OperacionApiController implements OperacionApi {
 
     private static final Logger log = LoggerFactory.getLogger(OperacionApiController.class);
 
-    private final ObjectMapper objectMapper;
-
-    private final HttpServletRequest request;
-
-    @org.springframework.beans.factory.annotation.Autowired
-    public OperacionApiController(ObjectMapper objectMapper, HttpServletRequest request) {
-        this.objectMapper = objectMapper;
-        this.request = request;
-    }
-
-    public ResponseEntity<Long> restarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody RestaDatos listaSumandos) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<Long>(objectMapper.readValue("0", Long.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Long>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
+    public ResponseEntity<Long> restarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody RestaDatos restaDatos) {
+        log.info("Inicio de resta entera con params={}", restaDatos);
         return new ResponseEntity<Long>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Long> sumarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody SumaDatos listaSumandos) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<Long>(objectMapper.readValue("0", Long.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Long>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
+    public ResponseEntity<Long> sumarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody SumaDatos sumaDatos) {
+        log.info("Inicio de suma entera con params={}", sumaDatos);
 
         return new ResponseEntity<Long>(HttpStatus.NOT_IMPLEMENTED);
     }

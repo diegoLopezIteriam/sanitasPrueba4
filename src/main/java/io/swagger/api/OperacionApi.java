@@ -27,23 +27,23 @@ import java.util.List;
 @Api(value = "operacion", description = "the operacion API")
 public interface OperacionApi {
 
-    @ApiOperation(value = "Realiza la resta de posible ampliacion", nickname = "restarEnteros", notes = "", response = Long.class, tags={ "Lista de sumandos", })
+    @ApiOperation(value = "Realiza la resta de numeros enteros", nickname = "restarEnteros", notes = "", response = Long.class, tags={ "Operador enteros", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Resultado operacion suma", response = Long.class) })
+        @ApiResponse(code = 200, message = "Resultado operacion resta", response = Long.class) })
     @RequestMapping(value = "/operacion/resta",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Long> restarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody RestaDatos listaSumandos);
+    ResponseEntity<Long> restarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody RestaDatos restaDatos);
 
 
-    @ApiOperation(value = "Realiza la suma de dos sumandos", nickname = "sumarEnteros", notes = "", response = Long.class, tags={ "Lista de sumandos", })
+    @ApiOperation(value = "Realiza la suma de dos sumandos", nickname = "sumarEnteros", notes = "", response = Long.class, tags={ "Operador enteros", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Resultado operacion suma", response = Long.class) })
     @RequestMapping(value = "/operacion/suma",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Long> sumarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody SumaDatos listaSumandos);
+    ResponseEntity<Long> sumarEnteros(@ApiParam(value = "" ,required=true )  @Valid @RequestBody SumaDatos sumaDatos);
 
 }
