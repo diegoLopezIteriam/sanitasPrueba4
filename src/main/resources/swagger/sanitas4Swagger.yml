@@ -1,0 +1,78 @@
+swagger: '2.0'
+
+# Metadata
+info:
+  version: "1.0.0"
+  title: Operador matematico
+host: localhost:8080
+# Paths
+paths:
+  /operacion/suma:
+    post:
+      tags:
+        - Lista de sumandos
+      summary: Realiza la suma de dos sumandos
+      operationId: sumarEnteros
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: listaSumandos
+          required: true
+          schema:
+            $ref: '#/definitions/SumaDatos'
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: Resultado operacion suma
+          schema:
+            type: integer
+            format: int64
+  /operacion/resta:
+    post:
+      tags:
+        - Lista de sumandos
+      summary: Realiza la resta de posible ampliacion
+      operationId: restarEnteros
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: listaSumandos
+          required: true
+          schema:
+            $ref: '#/definitions/RestaDatos'
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: Resultado operacion suma
+          schema:
+            type: integer
+            format: int64
+definitions:
+  SumaDatos:
+    type: object
+    properties:
+      sumando1:
+        type: integer
+        format: int64
+      sumando2:
+        type: integer
+        format: int64
+  RestaDatos:
+    type: object
+    properties:
+      sumando1:
+        type: integer
+        format: int64
+      sumando2:
+        type: integer
+        format: int64
