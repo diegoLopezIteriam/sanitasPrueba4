@@ -1,10 +1,16 @@
 ################
 INSTRUCCIONES
 ##############
+Se necesita jdk 1.8 y maven 3.6 o superior
+
 Para añadir el tracer a la carpeta m2 del usuario se lanza el siguiente comando desde la ubicación del jar:
 mvn install:install-file -Dfile=tracer-1.0.0.jar -DgroupId=io.corp.calculator -DartifactId=tracer -Dversion=1.0.0 -Dpackaging=jar
 
+Generar el jar:
+mvn clean install
 
+Arrancar el microservicio:
+java -jar target/sanitas-test4-1.0.0.jar
 
 ################
 ANÁLISIS
