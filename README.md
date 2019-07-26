@@ -29,3 +29,6 @@ El último paso sería diseñar una interfaz de errores con códigos genéricos 
 para facilitar el seguimiento de posibles errores controlados y no controlados
 
 Se utilizará sonarLint para asegurar la calidad del código implementado
+
+Soy consciente que sería adecuado en uno de los primeros pasos haber renombrado el paquete con un nombre más aparente (cuanto más tarde, más costoso),
+pero preferí invertir el tiempo en otras tareas con más interés de cara a calidad de código o diseño
