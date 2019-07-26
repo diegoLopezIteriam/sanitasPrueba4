@@ -70,9 +70,9 @@ definitions:
   RestaDatos:
     type: object
     properties:
-      sumando1:
+      minuendo:
         type: integer
         format: int64
-      sumando2:
+      sustraendo:
         type: integer
         format: int64
